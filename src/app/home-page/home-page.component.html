@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <nav class="navbar">
+    <a class="navbar-brand" href="https://www.shisheo.com/">
+      <img src="../../assets/images/Shisheo_Logo_1.png" alt="" /></a>
+
+    <form class="form-inline" [formGroup]="SearchRestuarentsForm">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+        formControlName="searchItems" (keypress)="searchWithNames($event)">
+    </form>
+    <div class="row">
+
+      <div class="col-6 col-md-4">
+        <button class="btn icon-custome" (click)="onHomePage()"><span class="icon-custome"><i class="fa fa-home"
+              aria-hidden="true"></i></span></button>
+      </div>
+      <div class="col-6 col-md-4">
+        <button class="btn icon-custome"><a href="https://g.page/beyond-limits-dubai?share"><span><i
+                class="fa fa-map-marker" aria-hidden="true"></i> </span> </a></button>
+      </div>
+    </div>
+  </nav>
+  <div class="row">
+    <ng-container *ngIf="!searchAction">
+      <div class="col-6 col-md-4" *ngFor="let restaurent of restaurents">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{restaurent.Image}}" alt="Card image cap">
+          <div class="card-body">
+              <div class="row">
+               <div class="col"><h6 class="card-title card-head">{{restaurent.name}}</h6></div>
+               <div class="icon-star" *ngFor ="let star of stars"><img class="card-img-top" src="{{star.star}}" alt="Card image cap"></div>
+              </div>  
+            <h6 class="card-second-head">{{restaurent.type}}</h6> 
+            <h6 class="card-second-head">{{restaurent.delivery}}</h6> 
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="searchAction">
+      <div class="col-6 col-md-4" *ngFor="let restaurent of serachedData">
+        <div class="card">
+            <img class="card-img-top" src="{{restaurent.Image}}" alt="Card image cap">
+            <div class="card-body">
+                <div class="row">
+                 <div class="col"><h6 class="card-title card-head">{{restaurent.name}}</h6></div>
+                 <div class="icon-star" *ngFor ="let star of stars"><img class="card-img-top" src="{{star.star}}" alt="Card image cap"></div>
+                </div>  
+              <h6 class="card-second-head">{{restaurent.type}}</h6> 
+              <h6 class="card-second-head">{{restaurent.delivery}}</h6> 
+            </div>
+          </div>
+      </div>
+    </ng-container>
+  </div>
